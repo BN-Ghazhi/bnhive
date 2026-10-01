@@ -1,26 +1,218 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand palette — sampled from the BNHIVE logo */
+  --color-navy-950: #010e2e;
+  --color-navy-900: #06173f;
+  --color-navy-800: #0c2257;
+  --color-navy-600: #3a4a6e;
+  --color-brand-50: #eef5ff;
+  --color-brand-100: #dbe9ff;
+  --color-brand-200: #b9d4ff;
+  --color-brand-500: #207bff;
+  --color-brand-600: #1663eb;
+  --color-brand-700: #1150c4;
+  --color-cyan-brand: #19d4ff;
+  --color-violet-brand: #5921fe;
+  --color-whatsapp: #25d366;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-navy-950);
+}
+
+/* Brand gradient (blue → cyan), used on buttons and highlights */
+.bg-brand-gradient {
+  background-image: linear-gradient(120deg, #207bff 0%, #19d4ff 100%);
+}
+.bg-brand-gradient-violet {
+  background-image: linear-gradient(120deg, #5921fe 0%, #207bff 55%, #19d4ff 100%);
+}
+.text-brand-gradient {
+  background-image: linear-gradient(100deg, #5921fe 0%, #207bff 45%, #19d4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hexagon pattern echoing the logo mark */
+.hex-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23207bff' stroke-opacity='0.14' stroke-width='1.5'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23207bff' stroke-opacity='0.1' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+.hex-pattern-light {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23ffffff' stroke-opacity='0.22' stroke-width='1.5'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-float { animation: none; }
+}
+
+/* ───────────── Motion system ───────────── */
+
+/* Scroll reveal (driven by <Reveal>) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal[data-variant="scale"] { transform: scale(0.94); }
+.reveal[data-variant="left"] { transform: translateX(-32px); }
+.reveal[data-variant="right"] { transform: translateX(32px); }
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Page-load entrance for hero elements */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+.animate-rise {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* Animated gradient text */
+@keyframes gradient-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.text-brand-gradient-animated {
+  background-image: linear-gradient(100deg, #5921fe, #207bff, #19d4ff, #207bff, #5921fe);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 8s ease-in-out infinite;
+}
+
+/* Drifting aurora blobs */
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, 40px) scale(1.12); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(70px, -30px) scale(0.9); }
+}
+.animate-drift-a { animation: drift-a 16s ease-in-out infinite; }
+.animate-drift-b { animation: drift-b 20s ease-in-out infinite; }
+
+/* Orbit rings around hero mark */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: spin-slow 28s linear infinite; }
+.animate-spin-slower { animation: spin-slow 44s linear infinite reverse; }
+
+/* Infinite marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 36s linear infinite; }
+.marquee-pause:hover .animate-marquee { animation-play-state: paused; }
+
+/* Rotating word */
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(0.6em) rotateX(-60deg); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+.animate-word-in { animation: word-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Card enter (project filter) */
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.animate-card-in {
+  animation: card-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* Cursor spotlight on cards (driven by <Spotlight>) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(32, 123, 255, 0.12), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+  pointer-events: none;
+}
+.spotlight:hover::before { opacity: 1; }
+
+/* Shine sweep on primary buttons */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after { transform: translateX(120%); }
+
+/* Soft pulse for status dots */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(32, 123, 255, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(32, 123, 255, 0); }
+}
+.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-rise,
+  .animate-card-in,
+  .animate-word-in {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .text-brand-gradient-animated,
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-spin-slow,
+  .animate-spin-slower,
+  .animate-marquee,
+  .animate-pulse-dot {
+    animation: none !important;
+  }
 }
