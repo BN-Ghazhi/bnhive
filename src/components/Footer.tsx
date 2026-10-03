@@ -3,7 +3,9 @@ import { SocialIcon, WhatsAppIcon } from "./icons";
 import Logo from "./Logo";
 
 export default function Footer() {
-  const socials = Object.entries(site.socials) as [keyof typeof site.socials, string][];
+  const socials = (Object.entries(site.socials) as [keyof typeof site.socials, string][]).filter(
+    ([, href]) => href,
+  );
   return (
     <footer className="relative overflow-hidden bg-navy-950 text-white/70">
       <div className="bg-brand-gradient-violet absolute inset-x-0 top-0 h-1" />
@@ -45,20 +47,22 @@ export default function Footer() {
               </a>
             </li>
           </ul>
-          <div className="mt-6 flex gap-3">
-            {socials.map(([name, href]) => (
-              <a
-                key={name}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={name}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 transition hover:border-cyan-brand hover:text-cyan-brand"
-              >
-                <SocialIcon name={name} className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
+          {socials.length > 0 && (
+            <div className="mt-6 flex gap-3">
+              {socials.map(([name, href]) => (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={name}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 transition hover:border-cyan-brand hover:text-cyan-brand"
+                >
+                  <SocialIcon name={name} className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div className="border-t border-white/10 py-6 text-center text-xs text-white/45">

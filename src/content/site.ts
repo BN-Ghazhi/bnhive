@@ -9,23 +9,24 @@ export const site = {
   description:
     "BnHive Technologies is a software and technology company building web, mobile, backend, AI, SaaS, and custom digital solutions for businesses and organizations. We turn ideas and real-world problems into practical, scalable technology.",
   url: "https://bnhive.com",
-  email: "hello@bnhive.com",
+  email: "bbhaddah@gmail.com",
   // International format, digits only (no +, spaces or dashes). e.g. 233241234567
   whatsappNumber: "233546505612",
   whatsappDisplay: "+233 54 650 5612",
   whatsappGreeting: "Hi BnHive! I'd like to talk about a project.",
   location: "Accra, Ghana",
+  // Paste a profile URL to show its icon in the footer; empty ones are hidden.
   socials: {
-    linkedin: "https://www.linkedin.com/company/bnhive",
-    instagram: "https://www.instagram.com/bnhive",
-    x: "https://x.com/bnhive",
+    linkedin: "",
+    instagram: "",
+    x: "",
   },
 };
 
 export const nav = [
   { label: "Services", href: "#services" },
   { label: "Industries", href: "#industries" },
-  { label: "Work", href: "#work" },
+  { label: "Portfolio", href: "#portfolio" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -41,7 +42,7 @@ export const hero = {
   // Floating chips around the hero logo
   chips: ["Next.js", "Flutter", "Rust", "AI / LLMs", "FastAPI", "Go"],
   primaryCta: { label: "Chat with us on WhatsApp" },
-  secondaryCta: { label: "See our work", href: "#work" },
+  secondaryCta: { label: "View our portfolio", href: "#portfolio" },
 };
 
 export const stats = [
@@ -365,7 +366,23 @@ export const projects: Project[] = [
     summary:
       "An offline notebook app for tailors and fashion designers in Ghana — customers, measurements, orders and payments, all stored securely on the tailor's phone.",
     tags: ["Flutter", "Offline-first", "Encrypted storage", "Android"],
+    highlights: [
+      "No account needed: business name, PIN and a recovery code, with optional fingerprint",
+      "Preloaded Ghanaian garment templates — kaba & slit, smock (fugu), kaftan and more",
+      "Orders move from Received to Collected, with late and ready-for-pickup alerts",
+      "Cash and Mobile Money payments, with balances and monthly reports",
+      "Encrypted backups to the phone, Google Drive or WhatsApp",
+    ],
     result: "Works fully offline, PIN & biometric lock",
+    frame: "phone",
+    images: [
+      { src: "/work/stitchbook/01.jpg", caption: "Home: money owed, with late, due-this-week and ready-for-pickup orders at a glance" },
+      { src: "/work/stitchbook/02.jpg", caption: "An order: fabric photo, progress from Received to Collected, and Mobile Money deposit and balance" },
+      { src: "/work/stitchbook/03.jpg", caption: "Every job in progress with fabric thumbnails, status, due dates and what each customer owes" },
+      { src: "/work/stitchbook/04.jpg", caption: "A customer's kaba & slit measurements, ready to reuse for a new order" },
+      { src: "/work/stitchbook/05.jpg", caption: "Customer page: one-tap call or WhatsApp, orders and measurement history" },
+      { src: "/work/stitchbook/06.jpg", caption: "Monthly report: money received, split by cash and Mobile Money, with a daily chart" },
+    ],
   },
   {
     title: "Learner",
@@ -374,7 +391,22 @@ export const projects: Project[] = [
     summary:
       "Turns photos of textbook pages, PDFs and Word documents into digital books, then automatically generates quizzes from your notes to help you revise.",
     tags: ["Flutter", "OCR", "EdTech", "Web & Android"],
+    highlights: [
+      "Add pages from photos, PDFs or Word files — text is read on-device",
+      "Switch between the extracted text and the original page photo",
+      "Offline quizzes: fill-in-the-blank, multiple choice, true/false and definitions",
+      "Every mistake links back to the sentence and page it came from",
+      "Subjects, books and a scored quiz history, all stored on the device",
+    ],
     result: "Offline quiz generation from your own notes",
+    images: [
+      { src: "/work/learner/01.jpg", caption: "Correcting a scanned page: the original textbook photo beside its editable text" },
+      { src: "/work/learner/02.jpg", caption: "Quiz results: each mistake shows the source sentence from your notes and a link to the page" },
+      { src: "/work/learner/03.jpg", caption: "Reading a digital book page by page, with a one-tap \"Quiz me\"" },
+      { src: "/work/learner/04.jpg", caption: "A multiple-choice question generated offline from the student's own notes" },
+      { src: "/work/learner/05.jpg", caption: "Photo view: the same page as the original textbook scan" },
+      { src: "/work/learner/06.jpg", caption: "A subject's books and its quiz history with colour-coded scores" },
+    ],
   },
   {
     title: "LiveProd",
@@ -383,7 +415,22 @@ export const projects: Project[] = [
     summary:
       "A professional live production switcher for broadcasters — mix cameras, screens and media, then record or stream live with GPU compositing and overlays.",
     tags: ["Rust", "FFmpeg", "GPU", "RTMP / SRT"],
+    highlights: [
+      "Preview / Program workflow with cut, T-bar and fade, wipe, zoom and slide transitions",
+      "Cameras, video, images, slides, countdowns, titles and lower thirds as inputs",
+      "Eight overlay channels and picture-in-picture layouts on top of Program",
+      "Stream to YouTube, Facebook, Twitch, custom RTMP or SRT",
+      "Keyboard-driven like a hardware switcher: 1–9 to preview, Space to cut",
+    ],
     result: "Hardware-accelerated recording & streaming",
+    images: [
+      { src: "/work/liveprod/01.jpg", caption: "On air: stage camera with a lower third and logo on Program, a picture-in-picture layout waiting on Preview" },
+      { src: "/work/liveprod/04.jpg", caption: "Pre-show: a countdown on Program, the event title card on Preview and nine inputs ready" },
+      { src: "/work/liveprod/02.jpg", caption: "Mid-transition: the T-bar pulled halfway between the title card and the stage camera" },
+      { src: "/work/liveprod/03.jpg", caption: "Streaming live to a custom RTMP destination, with the stream key masked" },
+      { src: "/work/liveprod/05.jpg", caption: "Adding a text input: templates and a gallery of lower-third designs" },
+      { src: "/work/liveprod/06.jpg", caption: "Lower-third settings: title, subtitle and design, with a live output preview" },
+    ],
   },
 ];
 

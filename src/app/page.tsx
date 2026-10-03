@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import Process from "@/components/Process";
 import Services from "@/components/Services";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import Work from "@/components/Work";
+import Portfolio from "@/components/Portfolio";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <Services />
         <Industries />
         <Process />
-        <Work />
+        <Portfolio />
         <About />
         <Contact />
       </main>

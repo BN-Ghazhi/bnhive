@@ -19,6 +19,23 @@ const coverGradients: Record<Project["category"], string> = {
 
 function Cover({ project }: { project: Project }) {
   const shot = project.images?.[0];
+  if (shot && project.frame === "phone") {
+    // Phone screenshots: the top of the screen, large, rising out of the brand gradient.
+    return (
+      <div className="absolute inset-0" style={{ backgroundImage: coverGradients[project.category] }}>
+        <div className="hex-pattern-light absolute inset-0" />
+        <div className="absolute top-6 left-1/2 aspect-[9/20] w-[44%] max-w-56 -translate-x-1/2 overflow-hidden rounded-[1.4rem] border-4 border-navy-950 bg-navy-950 shadow-2xl shadow-navy-950/40 transition duration-700 group-hover:-translate-y-2">
+          <Image
+            src={shot.src}
+            alt={shot.caption}
+            fill
+            sizes="(min-width: 1024px) 224px, 45vw"
+            className="object-cover object-top"
+          />
+        </div>
+      </div>
+    );
+  }
   if (shot) {
     return (
       <div className="absolute inset-0 bg-navy-950">
@@ -27,9 +44,7 @@ function Cover({ project }: { project: Project }) {
           alt={shot.caption}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className={`transition duration-700 group-hover:scale-105 ${
-            project.frame === "phone" ? "object-contain py-4" : "object-cover object-top"
-          }`}
+          className="object-cover object-top transition duration-700 group-hover:scale-105"
         />
       </div>
     );
@@ -49,17 +64,17 @@ function Cover({ project }: { project: Project }) {
   );
 }
 
-export default function Work() {
+export default function Portfolio() {
   const [active, setActive] = useState<(typeof filters)[number]>("All");
   const [open, setOpen] = useState<Project | null>(null);
   const shown = active === "All" ? projects : projects.filter((p) => p.category === active);
 
   return (
-    <section id="work" className="bg-brand-50/60 py-20 sm:py-28">
+    <section id="portfolio" className="bg-brand-50/60 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeading
-            eyebrow="Our work"
+            eyebrow="Portfolio"
             title="Projects we're proud of."
             subtitle="A selection of products we've designed and built across industries. Click any project to preview it."
           />
@@ -88,17 +103,18 @@ export default function Work() {
           </div>
         </div>
 
-        <Reveal>
-          <div
-            key={active}
-            className={`mt-12 grid gap-6 sm:grid-cols-2 ${projects.length <= 4 ? "" : "lg:grid-cols-3"}`}
-          >
-            {shown.map((p, i) => {
-              const count = p.images?.length ?? 0;
-              return (
+        {/* Each card reveals on its own: a single reveal around the whole grid could
+            never trigger on phones, where the stacked cards are taller than the screen. */}
+        <div
+          key={active}
+          className={`mt-12 grid gap-6 sm:grid-cols-2 ${projects.length <= 4 ? "" : "lg:grid-cols-3"}`}
+        >
+          {shown.map((p, i) => {
+            const count = p.images?.length ?? 0;
+            return (
+              <Reveal key={p.title} delay={(i % 3) * 80} className="h-full">
                 <Spotlight
                   as="article"
-                  key={p.title}
                   className="animate-card-in group relative flex h-full flex-col overflow-hidden rounded-2xl border border-brand-100 bg-white transition duration-300 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-2xl hover:shadow-brand-500/15"
                   style={{ "--delay": `${i * 70}ms` } as CSSProperties}
                 >
@@ -137,12 +153,17 @@ export default function Work() {
                     </p>
                   </div>
                 </Spotlight>
-              );
-            })}
-          </div>
-        </Reveal>
+              </Reveal>
+            );
+          })}
+        </div>
 
-        <ProjectPreview key={open?.title} project={open} onClose={() => setOpen(null)} cover={(p) => <Cover project={p} />} />
+        <ProjectPreview
+          key={open?.title}
+          project={open}
+          onClose={() => setOpen(null)}
+          cover={(p) => <Cover project={p} />}
+        />
 
         {testimonials.length > 0 && (
           <div className="mt-20 grid gap-6 md:grid-cols-2">

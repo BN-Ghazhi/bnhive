@@ -16,14 +16,24 @@ function useInView<T extends Element>(threshold = 0.15) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Very old browsers: just show everything.
+    if (typeof IntersectionObserver === "undefined") {
+      const id = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(id);
+    }
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (!entry.isIntersecting) return;
+        // An element taller than the viewport can never reach a ratio threshold
+        // (e.g. the stacked project grid on a phone), so also accept it once it
+        // fills a quarter of the screen.
+        const viewport = entry.rootBounds?.height ?? window.innerHeight;
+        if (entry.intersectionRatio >= threshold || entry.intersectionRect.height >= viewport * 0.25) {
           setVisible(true);
           io.disconnect();
         }
       },
-      { threshold, rootMargin: "0px 0px -8% 0px" },
+      { threshold: [0, 0.02, 0.05, 0.1, threshold, 0.25, 0.5, 1], rootMargin: "0px 0px -8% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -151,10 +161,7 @@ export function ScrollProgress() {
   }, []);
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]">
-      <div
-        className="bg-brand-gradient-violet h-full origin-left"
-        style={{ transform: `scaleX(${p})` }}
-      />
+      <div className="bg-brand-gradient-violet h-full origin-left" style={{ transform: `scaleX(${p})` }} />
     </div>
   );
 }
