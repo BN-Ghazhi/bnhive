@@ -206,21 +206,158 @@ export const process: { step: string; icon: ProcessIcon; title: string; text: st
   },
 ];
 
-// Portfolio. `image` is optional — put files in /public/work/ and set
-// e.g. image: "/work/locagri.jpg". Without an image, a branded cover is shown.
-// `result` is a one-line highlight shown under the summary.
+// Portfolio. Clicking a card opens a preview with its screenshots and details.
+// `images` are screenshots in /public/work/<project>/ — the first one is the card
+// cover. Without images, a branded cover is shown. `frame: "phone"` fits
+// portrait phone screenshots instead of cropping them. `highlights` are the
+// feature bullets in the preview; `result` is a one-line highlight on the card.
 export type Project = {
   title: string;
   client: string;
-  category: "Web" | "Mobile" | "Software";
+  category: "Web" | "Mobile" | "Desktop" | "SaaS";
   summary: string;
   tags: string[];
+  highlights?: string[];
   result?: string;
-  image?: string;
+  images?: { src: string; caption: string }[];
+  frame?: "desktop" | "phone";
   link?: string;
 };
 
 export const projects: Project[] = [
+  {
+    title: "micRo-C",
+    client: "micRo-C",
+    category: "SaaS",
+    summary:
+      "Multi-tenant microcredit management for Ghanaian lenders. Every lending institution gets its own branded portal on its own subdomain, from loan application to repayment and accounting.",
+    tags: ["Go", "Next.js", "PostgreSQL", "Multi-tenant"],
+    highlights: [
+      "Full loan lifecycle with 4 interest methods and live repayment schedules",
+      "Mobile-money repayments (MTN MoMo, Telecel Cash, AT Money)",
+      "Double-entry accounting, PAR30/PAR90 and Bank of Ghana loan classification",
+      "Self-serve lender onboarding and an operator console",
+      "Tenant isolation enforced in the database with row-level security",
+    ],
+    result: "82 API endpoints, 7 lender roles — working prototype",
+    images: [
+      { src: "/work/micro-c/05.jpg", caption: "Operator console: every lender on the platform and their combined portfolio" },
+      { src: "/work/micro-c/01.jpg", caption: "A lender's branded portal: portfolio outstanding, portfolio-at-risk and arrears" },
+      { src: "/work/micro-c/02.jpg", caption: "Loan detail with the generated repayment schedule and lifecycle actions" },
+      { src: "/work/micro-c/03.jpg", caption: "Borrower register with filters by status, KYC, branch and loan officer" },
+      { src: "/work/micro-c/04.jpg", caption: "Recording a mobile-money repayment with the allocation previewed before posting" },
+      { src: "/work/micro-c/06.jpg", caption: "Self-serve onboarding: a new lender gets its own subdomain and starter products" },
+    ],
+  },
+  {
+    title: "Church Management System",
+    client: "Kingdom Grace Chapel",
+    category: "Desktop",
+    summary:
+      "A complete management console for a church — members, attendance, events, departments, leadership and reports. It carries its own database, so it works fully offline with no server.",
+    tags: ["Flutter", "SQLite", "Offline-first", "Windows · macOS · Linux · Web"],
+    highlights: [
+      "Member directory with profiles and rich filters",
+      "Attendance headcounts, check-in and trend charts",
+      "Events calendar, departments and discipleship",
+      "10 roles with a per-module permission matrix",
+      "Reports with CSV export, light and dark theme",
+    ],
+    result: "One codebase for desktop and web, works offline",
+    images: [
+      { src: "/work/church-management/01.jpg", caption: "Dashboard: active members, Sunday attendance and in-person vs online trend" },
+      { src: "/work/church-management/03.jpg", caption: "Attendance: service headcounts, 26-week average and online share" },
+      { src: "/work/church-management/04.jpg", caption: "Member directory with search and status, gender, title and baptism filters" },
+      { src: "/work/church-management/02.jpg", caption: "Congregation age distribution alongside upcoming events" },
+      { src: "/work/church-management/05.jpg", caption: "Events calendar for rehearsals, youth nights, prayer meetings and outreach" },
+      { src: "/work/church-management/06.jpg", caption: "Pastors and leaders across the church's departments" },
+    ],
+  },
+  {
+    title: "Bible Presentation",
+    client: "Bible Presentation",
+    category: "Desktop",
+    summary:
+      "A desktop app that listens to a live sermon, detects Bible references as they're spoken, and puts the verse on the projector screen — automatically.",
+    tags: ["Rust", "Tauri", "React", "Speech-to-text"],
+    highlights: [
+      "Offline speech recognition on-device with Whisper, or Deepgram online",
+      "Preview / Live workflow with history, queue and chapter navigator",
+      "Bundled translations plus downloads including Twi, Ewe and Yoruba",
+      "Separate projector window with live typography and theme settings",
+    ],
+    result: "Spoken reference to projector, hands-free",
+    images: [
+      { src: "/work/bible-presentation/01.jpg", caption: "Operator console mid-sermon: \"John 3:16\" is detected and sent to Preview and Live" },
+      { src: "/work/bible-presentation/02.jpg", caption: "Staging the next verse in Preview while the current one stays live" },
+      { src: "/work/bible-presentation/05.jpg", caption: "Projector output shown to the congregation" },
+      { src: "/work/bible-presentation/03.jpg", caption: "Transcription settings: offline Whisper or online Deepgram" },
+      { src: "/work/bible-presentation/04.jpg", caption: "Bible Bank: bundled and downloadable translations" },
+    ],
+  },
+  {
+    title: "Scholae",
+    client: "Scholae",
+    category: "SaaS",
+    summary:
+      "A multi-tenant school management platform with separate experiences for admins, teachers, students, parents and supervisors, managed from a central superadmin.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL", "Docker"],
+    result: "5 user roles per school, unlimited schools",
+    highlights: [
+      "Attendance with QR / kiosk check-in",
+      "Grades, report cards and offline marksheet upload",
+      "Fees, payments and school financials",
+      "Superadmin plans, subscriptions and feature flags",
+    ],
+    images: [
+      { src: "/work/scholae/01.jpg", caption: "Sign-in for admins, teachers, students, parents and supervisors" },
+    ],
+    link: "https://scholae.cloud",
+  },
+  {
+    title: "Fleet Manager",
+    client: "Fleet Manager",
+    category: "Mobile",
+    summary:
+      "Fleet operations in one app — live vehicle tracking, running costs, driver safety and compliance for admins, with separate driver and owner apps.",
+    tags: ["Flutter", "OpenStreetMap", "Android · iOS · Web"],
+    highlights: [
+      "Live map with route trails and ETAs",
+      "Fleet cost, cost per km and utilisation KPIs",
+      "Driver safety scorecards (harsh braking, cornering, acceleration)",
+      "Compliance alerts for services, insurance and licences",
+      "Admin, manager, dispatcher, driver and owner roles",
+    ],
+    images: [
+      { src: "/work/fleet-manager/01.jpg", caption: "Operations dashboard: fleet cost, cost per km, utilisation and on-time KPIs" },
+      { src: "/work/fleet-manager/02.jpg", caption: "Live map tracking vehicles with route trail and ETAs" },
+      { src: "/work/fleet-manager/03.jpg", caption: "Driver safety scorecard with risk bands by driver" },
+      { src: "/work/fleet-manager/04.jpg", caption: "Running costs by insurance, maintenance, salary and fuel" },
+      { src: "/work/fleet-manager/05.jpg", caption: "Fleet register with search, sort and status filters" },
+      { src: "/work/fleet-manager/06.jpg", caption: "Compliance alerts for overdue services and expiring documents" },
+    ],
+  },
+  {
+    title: "Church Website",
+    client: "Kingdom Grace Chapel",
+    category: "Web",
+    summary:
+      "A modern, mobile-responsive website for a church with branches across Ghana — sermons, branches, ministries, events, giving and live streaming.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
+    highlights: [
+      "Searchable sermon library with speaker, series and book filters",
+      "Branch finder with region filter and map",
+      "Watch live, giving, prayer requests and membership",
+      "Pre-rendered pages, structured data and sitemap for search",
+    ],
+    result: "21 pages, 7 branches",
+    images: [
+      { src: "/work/kgc-website/01.jpg", caption: "Homepage with service times and live-stream call to action" },
+      { src: "/work/kgc-website/04.jpg", caption: "Service times, latest sermon and upcoming events at a glance" },
+      { src: "/work/kgc-website/03.jpg", caption: "Branch finder with search, region filter and map" },
+      { src: "/work/kgc-website/05.jpg", caption: "Annual convention feature section" },
+    ],
+  },
   {
     title: "StitchBook",
     client: "StitchBook",
@@ -240,19 +377,9 @@ export const projects: Project[] = [
     result: "Offline quiz generation from your own notes",
   },
   {
-    title: "Scholae",
-    client: "Scholae",
-    category: "Software",
-    summary:
-      "A multi-tenant school management platform with separate experiences for admins, teachers, students, parents and supervisors, managed from a central superadmin.",
-    tags: ["Next.js", "FastAPI", "PostgreSQL", "Docker"],
-    result: "5 user roles per school, unlimited schools",
-    link: "https://scholae.cloud",
-  },
-  {
     title: "LiveProd",
     client: "LiveProd",
-    category: "Software",
+    category: "Desktop",
     summary:
       "A professional live production switcher for broadcasters — mix cameras, screens and media, then record or stream live with GPU compositing and overlays.",
     tags: ["Rust", "FFmpeg", "GPU", "RTMP / SRT"],

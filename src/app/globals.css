@@ -128,14 +128,6 @@ body {
 .animate-spin-slow { animation: spin-slow 28s linear infinite; }
 .animate-spin-slower { animation: spin-slow 44s linear infinite reverse; }
 
-/* Infinite marquee */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.animate-marquee { animation: marquee 36s linear infinite; }
-.marquee-pause:hover .animate-marquee { animation-play-state: paused; }
-
 /* Rotating word */
 @keyframes word-in {
   from { opacity: 0; transform: translateY(0.6em) rotateX(-60deg); filter: blur(4px); }
@@ -211,7 +203,6 @@ body {
   .animate-drift-b,
   .animate-spin-slow,
   .animate-spin-slower,
-  .animate-marquee,
   .animate-pulse-dot {
     animation: none !important;
   }
