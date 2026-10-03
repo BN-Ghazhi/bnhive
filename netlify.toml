@@ -1,8 +1,7 @@
-# Netlify runs this as a full Next.js app (via its Next.js adapter),
-# so `.next` is the publish directory — not `out` or `public`.
+# The site is a static export (see next.config.ts): Netlify just serves `out/`.
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "22"
