@@ -6,7 +6,6 @@ import Industries from "@/components/Industries";
 import Navbar from "@/components/Navbar";
 import Process from "@/components/Process";
 import Services from "@/components/Services";
-import TechMarquee from "@/components/TechMarquee";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Work from "@/components/Work";
 
@@ -16,7 +15,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <TechMarquee />
         <Services />
         <Industries />
         <Process />
