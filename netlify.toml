@@ -1,0 +1,8 @@
+# Netlify runs this as a full Next.js app (via its Next.js adapter),
+# so `.next` is the publish directory — not `out` or `public`.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
