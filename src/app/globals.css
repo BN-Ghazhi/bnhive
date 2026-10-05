@@ -88,6 +88,14 @@ main {
 .reveal[data-variant="scale"] { transform: scale(0.94); }
 .reveal[data-variant="left"] { transform: translateX(-32px); }
 .reveal[data-variant="right"] { transform: translateX(32px); }
+/* Fail-safe: if the page script never starts (an unsupported browser, a blocked
+   or failed script), reveal everything on its own shortly after load. */
+.reveal:not([data-armed]) {
+  animation: reveal-failsafe 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+}
+@keyframes reveal-failsafe {
+  to { opacity: 1; transform: none; }
+}
 .reveal[data-visible="true"] {
   opacity: 1;
   transform: none;

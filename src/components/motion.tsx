@@ -13,6 +13,13 @@ import {
 function useInView<T extends Element>(threshold = 0.15) {
   const ref = useRef<T>(null);
   const [visible, setVisible] = useState(false);
+  // True once this script is running. Until then the CSS fail-safe reveals the
+  // element on its own, so content never stays hidden if JavaScript fails.
+  const [armed, setArmed] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setArmed(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -38,7 +45,7 @@ function useInView<T extends Element>(threshold = 0.15) {
     io.observe(el);
     return () => io.disconnect();
   }, [threshold]);
-  return { ref, visible };
+  return { ref, visible, armed };
 }
 
 /** Fades/slides its children in the first time they scroll into view. */
@@ -55,11 +62,12 @@ export function Reveal({
   className?: string;
   children: ReactNode;
 }) {
-  const { ref, visible } = useInView<HTMLElement>();
+  const { ref, visible, armed } = useInView<HTMLElement>();
   return (
     <Tag
       ref={ref}
       data-visible={visible}
+      data-armed={armed || undefined}
       data-variant={variant}
       style={{ "--delay": `${delay}ms` } as CSSProperties}
       className={`reveal ${className}`}
@@ -69,13 +77,14 @@ export function Reveal({
   );
 }
 
-/** Counts the numeric part of a value like "8+" or "11" up from zero when visible. */
+/** Counts the numeric part of a value like "8+" or "11" up from zero when visible.
+ *  Renders the real number until then, so it's correct even without JavaScript. */
 export function CountUp({ value, className = "" }: { value: string; className?: string }) {
   const match = value.match(/^(\D*)(\d+)(.*)$/);
   const hasNumber = match !== null;
   const target = match ? parseInt(match[2], 10) : 0;
   const { ref, visible } = useInView<HTMLSpanElement>(0.5);
-  const [n, setN] = useState(0);
+  const [n, setN] = useState(target);
 
   useEffect(() => {
     if (!visible || !hasNumber) return;
