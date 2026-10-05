@@ -104,6 +104,12 @@ const glyphPaths: Record<ServiceIcon | IndustryIcon | ProcessIcon, React.ReactNo
     </>
   ),
   // services
+  ecommerce: (
+    <>
+      <path d="M5 7h14l-1.2 11.2a2 2 0 01-2 1.8H8.2a2 2 0 01-2-1.8z" />
+      <path d="M9 10V6.5a3 3 0 016 0V10" />
+    </>
+  ),
   web: (
     <>
       <rect x="3" y="4" width="18" height="14" rx="2" />

@@ -46,12 +46,13 @@ export const hero = {
 };
 
 export const stats = [
-  { value: "11", label: "Service lines" },
+  { value: "12", label: "Service lines" },
   { value: "9", label: "Industry areas" },
 ];
 
 export type ServiceIcon =
   | "web"
+  | "ecommerce"
   | "mobile"
   | "api"
   | "software"
@@ -72,6 +73,11 @@ export const services: {
     icon: "web",
     title: "Web Applications",
     description: "Fast, secure web apps, portals and dashboards built with React, Next.js and TypeScript.",
+  },
+  {
+    icon: "ecommerce",
+    title: "E-commerce Development",
+    description: "Online stores and marketplaces with checkout, Mobile Money and card payments, and order management.",
   },
   {
     icon: "mobile",
