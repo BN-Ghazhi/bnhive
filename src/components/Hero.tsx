@@ -1,20 +1,10 @@
-import Image from "next/image";
 import type { CSSProperties } from "react";
-import { hero, stats, whatsappLink } from "@/content/site";
+import { hero, whatsappLink } from "@/content/site";
 import { ArrowRight, WhatsAppIcon } from "./icons";
-import { CountUp, Reveal, RotatingWords } from "./motion";
+import HeroCollage from "./HeroCollage";
+import { RotatingWords } from "./motion";
 
 const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as CSSProperties;
-
-// Positions for the floating chips around the logo (percent of the visual box).
-const chipSpots = [
-  "top-[6%] left-[4%]",
-  "top-[14%] right-[0%]",
-  "top-[46%] -left-[6%]",
-  "top-[52%] -right-[4%]",
-  "bottom-[8%] left-[10%]",
-  "bottom-[2%] right-[14%]",
-];
 
 export default function Hero() {
   return (
@@ -28,7 +18,7 @@ export default function Hero() {
       <div className="animate-drift-b pointer-events-none absolute top-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-violet-brand/15 blur-[110px]" />
       <div className="animate-drift-a pointer-events-none absolute bottom-0 left-1/3 h-[300px] w-[300px] rounded-full bg-brand-500/10 blur-[100px] [animation-delay:-6s]" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1.2fr_1fr]">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1fr_1.05fr]">
         <div>
           <p
             style={delay(0)}
@@ -76,53 +66,12 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* visual */}
-        <div style={delay(300)} className="animate-rise relative mx-auto hidden aspect-square w-full max-w-md lg:block">
-          <div className="absolute inset-[6%] rounded-full border border-dashed border-brand-200 animate-spin-slower" />
-          <div className="absolute inset-[18%] rounded-full border border-brand-200/80 animate-spin-slow">
-            <span className="bg-brand-gradient absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full shadow-[0_0_12px_rgba(32,123,255,0.8)]" />
-          </div>
-          <div className="bg-brand-gradient-violet absolute inset-[24%] rounded-full opacity-30 blur-3xl" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Image
-              src="/brand/logo-mark.png"
-              alt=""
-              width={443}
-              height={512}
-              priority
-              className="animate-float relative h-auto w-[46%] drop-shadow-[0_30px_40px_rgba(32,123,255,0.35)]"
-            />
-          </div>
-          {hero.chips.map((c, i) => (
-            <span
-              key={c}
-              className={`animate-float absolute ${chipSpots[i % chipSpots.length]} rounded-xl border border-white/80 bg-white/80 px-3 py-1.5 text-sm font-semibold text-navy-900 shadow-lg shadow-brand-500/10 backdrop-blur`}
-              style={{ animationDelay: `${-i * 1.1}s`, animationDuration: `${5 + (i % 3)}s` }}
-            >
-              <span className="bg-brand-gradient mr-1.5 inline-block h-1.5 w-1.5 rounded-full align-middle" />
-              {c}
-            </span>
-          ))}
+        {/* visual: real products we've built, cross-fading */}
+        <div style={delay(300)} className="animate-rise">
+          <HeroCollage />
         </div>
       </div>
 
-      <div className="relative mx-auto mt-16 max-w-6xl px-5">
-        <dl className="grid max-w-2xl grid-cols-2 gap-4">
-          {stats.map((s, i) => (
-            <Reveal
-              key={s.label}
-              delay={i * 90}
-              className="rounded-2xl border border-brand-100 bg-white/80 p-5 shadow-sm shadow-brand-500/5 backdrop-blur transition hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-500/10"
-            >
-              <dt className="sr-only">{s.label}</dt>
-              <dd className="text-brand-gradient font-display text-3xl font-bold sm:text-4xl">
-                <CountUp value={s.value} />
-              </dd>
-              <dd className="mt-1 text-sm text-navy-600">{s.label}</dd>
-            </Reveal>
-          ))}
-        </dl>
-      </div>
     </section>
   );
 }

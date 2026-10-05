@@ -2,6 +2,8 @@ import { services, techStack } from "@/content/site";
 import { Glyph } from "./icons";
 import { Reveal, Spotlight } from "./motion";
 import SectionHeading from "./SectionHeading";
+import ScrollRow from "./ScrollRow";
+import TechLogo from "./TechLogo";
 
 export default function Services() {
   return (
@@ -10,7 +12,7 @@ export default function Services() {
         <SectionHeading
           eyebrow="What we do"
           title="We build digital solutions."
-          subtitle="Web, mobile, backend, systems and AI capabilities under one technology direction — from a single app to a full SaaS platform."
+          subtitle="From a single app to a full SaaS platform — one team for all of it."
         />
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -31,28 +33,34 @@ export default function Services() {
         </div>
 
         <Reveal className="mt-20">
-          <div className="rounded-3xl border border-brand-100 bg-linear-to-br from-brand-50 to-white p-8 sm:p-12">
+          <div>
             <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
               <h3 className="font-display text-2xl font-bold text-navy-950">Our technology stack</h3>
-              <p className="text-sm text-navy-600">Project-driven — we pick the right tool for each problem.</p>
+              <p className="text-sm text-navy-600">Scroll to see more →</p>
             </div>
-            <dl className="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
-              {techStack.map((t) => (
-                <div key={t.area}>
-                  <dt className="text-xs font-semibold tracking-wide text-brand-500 uppercase">{t.area}</dt>
-                  <dd className="mt-2 flex flex-wrap gap-2">
-                    {t.items.map((i) => (
-                      <span
-                        key={i}
-                        className="rounded-lg border border-brand-100 bg-white px-2.5 py-1 text-sm font-medium text-navy-900 transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600"
-                      >
-                        {i}
-                      </span>
-                    ))}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <div className="mt-8">
+              <ScrollRow label="Our technology stack">
+                {techStack.map((t) => (
+                  <div key={t.area} className="shrink-0 snap-start">
+                    <p className="text-xs font-semibold tracking-wide whitespace-nowrap text-brand-500 uppercase">
+                      {t.area}
+                    </p>
+                    <ul className="mt-3 flex gap-2.5">
+                      {t.items.map((i) => (
+                        <li
+                          key={i}
+                          title={i}
+                          className="flex w-[4.75rem] flex-col items-center gap-1.5 rounded-xl border border-brand-100 bg-white px-1.5 py-3 text-center shadow-sm transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-md"
+                        >
+                          <TechLogo name={i} />
+                          <span className="text-[11px] leading-tight font-medium text-navy-900">{i}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </ScrollRow>
+            </div>
           </div>
         </Reveal>
       </div>

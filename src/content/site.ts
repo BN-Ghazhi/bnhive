@@ -35,20 +35,41 @@ export const hero = {
   eyebrow: "Software • Technology • Digital Solutions • AI",
   title: "Your idea. Our technology.",
   highlight: "Real solutions.",
-  subtitle:
-    "BnHive Technologies designs, develops and deploys practical digital solutions — combining modern software engineering, cloud, mobile, backend systems and AI to turn ideas and operational challenges into reliable products.",
+  subtitle: "Web, mobile, backend and AI solutions — designed, built and deployed by one team.",
   buildPrefix: "We build",
-  rotating: ["web applications", "mobile apps", "AI-powered products", "SaaS platforms", "backend systems", "business software"],
+  rotating: [
+    "web applications",
+    "mobile apps",
+    "AI-powered products",
+    "SaaS platforms",
+    "backend systems",
+    "business software",
+  ],
   // Floating chips around the hero logo
   chips: ["Next.js", "Flutter", "Rust", "AI / LLMs", "FastAPI", "Go"],
+  // The hero alternates between the logo and a collage of these screen sets
+  // (a different set each time). Use screenshots that aren't
+  // a project's cover (its first image) so nothing repeats on the page.
+  slides: [
+    {
+      browser: { src: "/work/micro-c/01.jpg", label: "micRo-C" },
+      screen: { src: "/work/liveprod/04.jpg", label: "LiveProd" },
+      phone: { src: "/work/stitchbook/02.jpg", label: "StitchBook" },
+    },
+    {
+      browser: { src: "/work/fleet-manager/02.jpg", label: "Fleet Manager" },
+      screen: { src: "/work/bible-presentation/02.jpg", label: "Bible Presentation" },
+      phone: { src: "/work/stitchbook/04.jpg", label: "StitchBook" },
+    },
+    {
+      browser: { src: "/work/church-management/03.jpg", label: "Church Management System" },
+      screen: { src: "/work/liveprod/02.jpg", label: "LiveProd" },
+      phone: { src: "/work/stitchbook/05.jpg", label: "StitchBook" },
+    },
+  ],
   primaryCta: { label: "Chat with us on WhatsApp" },
   secondaryCta: { label: "View our portfolio", href: "#portfolio" },
 };
-
-export const stats = [
-  { value: "12", label: "Service lines" },
-  { value: "9", label: "Industry areas" },
-];
 
 export type ServiceIcon =
   | "web"
@@ -72,62 +93,62 @@ export const services: {
   {
     icon: "web",
     title: "Web Applications",
-    description: "Fast, secure web apps, portals and dashboards built with React, Next.js and TypeScript.",
+    description: "Web apps, portals and dashboards.",
   },
   {
     icon: "ecommerce",
     title: "E-commerce Development",
-    description: "Online stores and marketplaces with checkout, Mobile Money and card payments, and order management.",
+    description: "Online stores with Mobile Money and card payments.",
   },
   {
     icon: "mobile",
     title: "Mobile Applications",
-    description: "Cross-platform Android and iOS apps built with Flutter — including offline-first apps.",
+    description: "Android and iOS apps, including offline-first.",
   },
   {
     icon: "api",
     title: "Backend & APIs",
-    description: "Reliable REST APIs and backend services in Go, Rust, Python/FastAPI and Node.js.",
+    description: "Fast, reliable APIs and backend services.",
   },
   {
     icon: "software",
     title: "Custom Business Software",
-    description: "Software shaped around how your organization actually works, not the other way round.",
+    description: "Software shaped around how you work.",
   },
   {
     icon: "ai",
     title: "AI Integration & AI Apps",
-    description: "LLM-powered features, intelligent workflows and AI-powered products that do real work.",
+    description: "AI features and products that do real work.",
   },
   {
     icon: "saas",
     title: "SaaS & Multi-tenant Platforms",
-    description: "Scalable platforms that serve many organizations securely from one codebase.",
+    description: "One platform, many organizations, securely.",
   },
   {
     icon: "workflow",
     title: "Business & Workflow Systems",
-    description: "Management, POS, inventory and workflow systems that streamline daily operations.",
+    description: "POS, inventory and workflow systems.",
   },
   {
     icon: "cloud",
     title: "Cloud & Server Deployment",
-    description: "Linux, Docker, VPS and cloud infrastructure set up, deployed and kept running.",
+    description: "Deployed, monitored and kept running.",
   },
   {
     icon: "database",
     title: "Database Design & Management",
-    description: "Well-modelled PostgreSQL databases designed for integrity, performance and growth.",
+    description: "Databases built for integrity and growth.",
   },
   {
     icon: "integration",
     title: "System Integration & Automation",
-    description: "Connect your tools, payment providers and third-party services, and automate the busywork.",
+    description: "Connect your tools and automate the busywork.",
   },
   {
     icon: "desktop",
     title: "Desktop & System Software",
-    description: "High-performance desktop and systems software built in Rust.",
+    description: "High-performance desktop software.",
   },
 ];
 
@@ -135,9 +156,9 @@ export const services: {
 export const techStack: { area: string; items: string[] }[] = [
   { area: "Web", items: ["React", "Next.js", "TypeScript"] },
   { area: "Mobile", items: ["Flutter", "Dart"] },
-  { area: "Systems / Desktop", items: ["Rust"] },
+  { area: "Desktop", items: ["Rust", "Tauri"] },
   { area: "Backend", items: ["Go", "Rust", "Python", "FastAPI", "Node.js"] },
-  { area: "Databases", items: ["PostgreSQL"] },
+  { area: "Databases", items: ["PostgreSQL", "SQLite"] },
   { area: "Infrastructure", items: ["Linux", "Docker", "VPS & Cloud"] },
   { area: "APIs", items: ["REST APIs", "Third-party integrations"] },
   { area: "AI", items: ["LLMs", "AI APIs", "Intelligent workflows"] },
@@ -155,15 +176,51 @@ export type IndustryIcon =
   | "logisticstech";
 
 export const industries: { icon: IndustryIcon; name: string; text: string }[] = [
-  { icon: "fintech", name: "FinTech", text: "Financial and payment-related platforms" },
-  { icon: "agritech", name: "AgriTech", text: "Agriculture, farm, field and agribusiness systems" },
-  { icon: "edtech", name: "EdTech", text: "School, learning and education platforms" },
-  { icon: "faithtech", name: "FaithTech", text: "Church and ministry management and media systems" },
-  { icon: "businesstech", name: "BusinessTech", text: "Business management, POS, inventory and workflow systems" },
-  { icon: "mediatech", name: "MediaTech", text: "Media, event and digital content solutions" },
-  { icon: "healthtech", name: "HealthTech", text: "Healthcare and service-management platforms" },
-  { icon: "proptech", name: "PropTech", text: "Property and real-estate management systems" },
-  { icon: "logisticstech", name: "LogisticsTech", text: "Logistics, delivery, tracking and operational systems" },
+  {
+    icon: "fintech",
+    name: "FinTech",
+    text: "Lending, wallets and payment platforms with Mobile Money, accounting and compliance built in.",
+  },
+  {
+    icon: "faithtech",
+    name: "FaithTech",
+    text: "Church management, attendance, giving and live media tools for ministries of every size.",
+  },
+  {
+    icon: "edtech",
+    name: "EdTech",
+    text: "School management, learning apps and digital classrooms for students, teachers and parents.",
+  },
+  {
+    icon: "mediatech",
+    name: "MediaTech",
+    text: "Live production, streaming and event tools that put great content on every screen.",
+  },
+  {
+    icon: "logisticstech",
+    name: "LogisticsTech",
+    text: "Fleet tracking, delivery and dispatch systems that keep goods and vehicles moving.",
+  },
+  {
+    icon: "businesstech",
+    name: "BusinessTech",
+    text: "POS, inventory, orders and workflow systems that run day-to-day business smoothly.",
+  },
+  {
+    icon: "agritech",
+    name: "AgriTech",
+    text: "Farm records, field data and marketplaces that connect farmers to inputs and buyers.",
+  },
+  {
+    icon: "healthtech",
+    name: "HealthTech",
+    text: "Patient records, appointments and clinic management for safer, faster care.",
+  },
+  {
+    icon: "proptech",
+    name: "PropTech",
+    text: "Property listings, tenant and rent management for landlords and real-estate teams.",
+  },
 ];
 
 export type ProcessIcon = "understand" | "define" | "design" | "develop" | "test" | "deploy" | "support";
@@ -173,43 +230,43 @@ export const process: { step: string; icon: ProcessIcon; title: string; text: st
     step: "01",
     icon: "understand",
     title: "Understand",
-    text: "We start with the problem and your business objective — who it's for, what success looks like.",
+    text: "Your problem, your goals, your users.",
   },
   {
     step: "02",
     icon: "define",
     title: "Define",
-    text: "We turn that into clear requirements and user workflows, so everyone agrees on what we're building.",
+    text: "Clear requirements and user workflows.",
   },
   {
     step: "03",
     icon: "design",
     title: "Design",
-    text: "We design the system architecture and the product experience before a line of production code.",
+    text: "Architecture and product experience.",
   },
   {
     step: "04",
     icon: "develop",
     title: "Develop",
-    text: "We build the web, mobile, backend, AI and supporting services — with regular demos along the way.",
+    text: "Web, mobile, backend and AI — with regular demos.",
   },
   {
     step: "05",
     icon: "test",
     title: "Test & improve",
-    text: "We test thoroughly and refine the solution with your feedback until it's ready.",
+    text: "Tested thoroughly and refined with you.",
   },
   {
     step: "06",
     icon: "deploy",
     title: "Deploy",
-    text: "We ship to the infrastructure that suits you — VPS, cloud or your own servers.",
+    text: "Shipped to the cloud, VPS or your servers.",
   },
   {
     step: "07",
     icon: "support",
     title: "Support",
-    text: "We stay on for maintenance, improvements and ongoing technical support.",
+    text: "Maintenance, improvements and support.",
   },
 ];
 
@@ -248,12 +305,30 @@ export const projects: Project[] = [
     ],
     result: "82 API endpoints, 7 lender roles — working prototype",
     images: [
-      { src: "/work/micro-c/05.jpg", caption: "Operator console: every lender on the platform and their combined portfolio" },
-      { src: "/work/micro-c/01.jpg", caption: "A lender's branded portal: portfolio outstanding, portfolio-at-risk and arrears" },
-      { src: "/work/micro-c/02.jpg", caption: "Loan detail with the generated repayment schedule and lifecycle actions" },
-      { src: "/work/micro-c/03.jpg", caption: "Borrower register with filters by status, KYC, branch and loan officer" },
-      { src: "/work/micro-c/04.jpg", caption: "Recording a mobile-money repayment with the allocation previewed before posting" },
-      { src: "/work/micro-c/06.jpg", caption: "Self-serve onboarding: a new lender gets its own subdomain and starter products" },
+      {
+        src: "/work/micro-c/05.jpg",
+        caption: "Operator console: every lender on the platform and their combined portfolio",
+      },
+      {
+        src: "/work/micro-c/01.jpg",
+        caption: "A lender's branded portal: portfolio outstanding, portfolio-at-risk and arrears",
+      },
+      {
+        src: "/work/micro-c/02.jpg",
+        caption: "Loan detail with the generated repayment schedule and lifecycle actions",
+      },
+      {
+        src: "/work/micro-c/03.jpg",
+        caption: "Borrower register with filters by status, KYC, branch and loan officer",
+      },
+      {
+        src: "/work/micro-c/04.jpg",
+        caption: "Recording a mobile-money repayment with the allocation previewed before posting",
+      },
+      {
+        src: "/work/micro-c/06.jpg",
+        caption: "Self-serve onboarding: a new lender gets its own subdomain and starter products",
+      },
     ],
   },
   {
@@ -272,12 +347,30 @@ export const projects: Project[] = [
     ],
     result: "One codebase for desktop and web, works offline",
     images: [
-      { src: "/work/church-management/01.jpg", caption: "Dashboard: active members, Sunday attendance and in-person vs online trend" },
-      { src: "/work/church-management/03.jpg", caption: "Attendance: service headcounts, 26-week average and online share" },
-      { src: "/work/church-management/04.jpg", caption: "Member directory with search and status, gender, title and baptism filters" },
-      { src: "/work/church-management/02.jpg", caption: "Congregation age distribution alongside upcoming events" },
-      { src: "/work/church-management/05.jpg", caption: "Events calendar for rehearsals, youth nights, prayer meetings and outreach" },
-      { src: "/work/church-management/06.jpg", caption: "Pastors and leaders across the church's departments" },
+      {
+        src: "/work/church-management/01.jpg",
+        caption: "Dashboard: active members, Sunday attendance and in-person vs online trend",
+      },
+      {
+        src: "/work/church-management/03.jpg",
+        caption: "Attendance: service headcounts, 26-week average and online share",
+      },
+      {
+        src: "/work/church-management/04.jpg",
+        caption: "Member directory with search and status, gender, title and baptism filters",
+      },
+      {
+        src: "/work/church-management/02.jpg",
+        caption: "Congregation age distribution alongside upcoming events",
+      },
+      {
+        src: "/work/church-management/05.jpg",
+        caption: "Events calendar for rehearsals, youth nights, prayer meetings and outreach",
+      },
+      {
+        src: "/work/church-management/06.jpg",
+        caption: "Pastors and leaders across the church's departments",
+      },
     ],
   },
   {
@@ -295,11 +388,23 @@ export const projects: Project[] = [
     ],
     result: "Spoken reference to projector, hands-free",
     images: [
-      { src: "/work/bible-presentation/01.jpg", caption: "Operator console mid-sermon: \"John 3:16\" is detected and sent to Preview and Live" },
-      { src: "/work/bible-presentation/02.jpg", caption: "Staging the next verse in Preview while the current one stays live" },
+      {
+        src: "/work/bible-presentation/01.jpg",
+        caption: 'Operator console mid-sermon: "John 3:16" is detected and sent to Preview and Live',
+      },
+      {
+        src: "/work/bible-presentation/02.jpg",
+        caption: "Staging the next verse in Preview while the current one stays live",
+      },
       { src: "/work/bible-presentation/05.jpg", caption: "Projector output shown to the congregation" },
-      { src: "/work/bible-presentation/03.jpg", caption: "Transcription settings: offline Whisper or online Deepgram" },
-      { src: "/work/bible-presentation/04.jpg", caption: "Bible Bank: bundled and downloadable translations" },
+      {
+        src: "/work/bible-presentation/03.jpg",
+        caption: "Transcription settings: offline Whisper or online Deepgram",
+      },
+      {
+        src: "/work/bible-presentation/04.jpg",
+        caption: "Bible Bank: bundled and downloadable translations",
+      },
     ],
   },
   {
@@ -317,7 +422,10 @@ export const projects: Project[] = [
       "Superadmin plans, subscriptions and feature flags",
     ],
     images: [
-      { src: "/work/scholae/01.jpg", caption: "Sign-in for admins, teachers, students, parents and supervisors" },
+      {
+        src: "/work/scholae/01.jpg",
+        caption: "Sign-in for admins, teachers, students, parents and supervisors",
+      },
     ],
     link: "https://scholae.cloud",
   },
@@ -336,12 +444,21 @@ export const projects: Project[] = [
       "Admin, manager, dispatcher, driver and owner roles",
     ],
     images: [
-      { src: "/work/fleet-manager/01.jpg", caption: "Operations dashboard: fleet cost, cost per km, utilisation and on-time KPIs" },
+      {
+        src: "/work/fleet-manager/01.jpg",
+        caption: "Operations dashboard: fleet cost, cost per km, utilisation and on-time KPIs",
+      },
       { src: "/work/fleet-manager/02.jpg", caption: "Live map tracking vehicles with route trail and ETAs" },
       { src: "/work/fleet-manager/03.jpg", caption: "Driver safety scorecard with risk bands by driver" },
-      { src: "/work/fleet-manager/04.jpg", caption: "Running costs by insurance, maintenance, salary and fuel" },
+      {
+        src: "/work/fleet-manager/04.jpg",
+        caption: "Running costs by insurance, maintenance, salary and fuel",
+      },
       { src: "/work/fleet-manager/05.jpg", caption: "Fleet register with search, sort and status filters" },
-      { src: "/work/fleet-manager/06.jpg", caption: "Compliance alerts for overdue services and expiring documents" },
+      {
+        src: "/work/fleet-manager/06.jpg",
+        caption: "Compliance alerts for overdue services and expiring documents",
+      },
     ],
   },
   {
@@ -359,8 +476,14 @@ export const projects: Project[] = [
     ],
     result: "21 pages, 7 branches",
     images: [
-      { src: "/work/kgc-website/01.jpg", caption: "Homepage with service times and live-stream call to action" },
-      { src: "/work/kgc-website/04.jpg", caption: "Service times, latest sermon and upcoming events at a glance" },
+      {
+        src: "/work/kgc-website/01.jpg",
+        caption: "Homepage with service times and live-stream call to action",
+      },
+      {
+        src: "/work/kgc-website/04.jpg",
+        caption: "Service times, latest sermon and upcoming events at a glance",
+      },
       { src: "/work/kgc-website/03.jpg", caption: "Branch finder with search, region filter and map" },
       { src: "/work/kgc-website/05.jpg", caption: "Annual convention feature section" },
     ],
@@ -382,12 +505,32 @@ export const projects: Project[] = [
     result: "Works fully offline, PIN & biometric lock",
     frame: "phone",
     images: [
-      { src: "/work/stitchbook/01.jpg", caption: "Home: money owed, with late, due-this-week and ready-for-pickup orders at a glance" },
-      { src: "/work/stitchbook/02.jpg", caption: "An order: fabric photo, progress from Received to Collected, and Mobile Money deposit and balance" },
-      { src: "/work/stitchbook/03.jpg", caption: "Every job in progress with fabric thumbnails, status, due dates and what each customer owes" },
-      { src: "/work/stitchbook/04.jpg", caption: "A customer's kaba & slit measurements, ready to reuse for a new order" },
-      { src: "/work/stitchbook/05.jpg", caption: "Customer page: one-tap call or WhatsApp, orders and measurement history" },
-      { src: "/work/stitchbook/06.jpg", caption: "Monthly report: money received, split by cash and Mobile Money, with a daily chart" },
+      {
+        src: "/work/stitchbook/01.jpg",
+        caption: "Home: money owed, with late, due-this-week and ready-for-pickup orders at a glance",
+      },
+      {
+        src: "/work/stitchbook/02.jpg",
+        caption:
+          "An order: fabric photo, progress from Received to Collected, and Mobile Money deposit and balance",
+      },
+      {
+        src: "/work/stitchbook/03.jpg",
+        caption:
+          "Every job in progress with fabric thumbnails, status, due dates and what each customer owes",
+      },
+      {
+        src: "/work/stitchbook/04.jpg",
+        caption: "A customer's kaba & slit measurements, ready to reuse for a new order",
+      },
+      {
+        src: "/work/stitchbook/05.jpg",
+        caption: "Customer page: one-tap call or WhatsApp, orders and measurement history",
+      },
+      {
+        src: "/work/stitchbook/06.jpg",
+        caption: "Monthly report: money received, split by cash and Mobile Money, with a daily chart",
+      },
     ],
   },
   {
@@ -406,12 +549,28 @@ export const projects: Project[] = [
     ],
     result: "Offline quiz generation from your own notes",
     images: [
-      { src: "/work/learner/01.jpg", caption: "Correcting a scanned page: the original textbook photo beside its editable text" },
-      { src: "/work/learner/02.jpg", caption: "Quiz results: each mistake shows the source sentence from your notes and a link to the page" },
-      { src: "/work/learner/03.jpg", caption: "Reading a digital book page by page, with a one-tap \"Quiz me\"" },
-      { src: "/work/learner/04.jpg", caption: "A multiple-choice question generated offline from the student's own notes" },
+      {
+        src: "/work/learner/01.jpg",
+        caption: "Correcting a scanned page: the original textbook photo beside its editable text",
+      },
+      {
+        src: "/work/learner/02.jpg",
+        caption:
+          "Quiz results: each mistake shows the source sentence from your notes and a link to the page",
+      },
+      {
+        src: "/work/learner/03.jpg",
+        caption: 'Reading a digital book page by page, with a one-tap "Quiz me"',
+      },
+      {
+        src: "/work/learner/04.jpg",
+        caption: "A multiple-choice question generated offline from the student's own notes",
+      },
       { src: "/work/learner/05.jpg", caption: "Photo view: the same page as the original textbook scan" },
-      { src: "/work/learner/06.jpg", caption: "A subject's books and its quiz history with colour-coded scores" },
+      {
+        src: "/work/learner/06.jpg",
+        caption: "A subject's books and its quiz history with colour-coded scores",
+      },
     ],
   },
   {
@@ -430,12 +589,31 @@ export const projects: Project[] = [
     ],
     result: "Hardware-accelerated recording & streaming",
     images: [
-      { src: "/work/liveprod/01.jpg", caption: "On air: stage camera with a lower third and logo on Program, a picture-in-picture layout waiting on Preview" },
-      { src: "/work/liveprod/04.jpg", caption: "Pre-show: a countdown on Program, the event title card on Preview and nine inputs ready" },
-      { src: "/work/liveprod/02.jpg", caption: "Mid-transition: the T-bar pulled halfway between the title card and the stage camera" },
-      { src: "/work/liveprod/03.jpg", caption: "Streaming live to a custom RTMP destination, with the stream key masked" },
-      { src: "/work/liveprod/05.jpg", caption: "Adding a text input: templates and a gallery of lower-third designs" },
-      { src: "/work/liveprod/06.jpg", caption: "Lower-third settings: title, subtitle and design, with a live output preview" },
+      {
+        src: "/work/liveprod/01.jpg",
+        caption:
+          "On air: stage camera with a lower third and logo on Program, a picture-in-picture layout waiting on Preview",
+      },
+      {
+        src: "/work/liveprod/04.jpg",
+        caption: "Pre-show: a countdown on Program, the event title card on Preview and nine inputs ready",
+      },
+      {
+        src: "/work/liveprod/02.jpg",
+        caption: "Mid-transition: the T-bar pulled halfway between the title card and the stage camera",
+      },
+      {
+        src: "/work/liveprod/03.jpg",
+        caption: "Streaming live to a custom RTMP destination, with the stream key masked",
+      },
+      {
+        src: "/work/liveprod/05.jpg",
+        caption: "Adding a text input: templates and a gallery of lower-third designs",
+      },
+      {
+        src: "/work/liveprod/06.jpg",
+        caption: "Lower-third settings: title, subtitle and design, with a live output preview",
+      },
     ],
   },
 ];
@@ -446,20 +624,19 @@ export const testimonials: { quote: string; name: string; role: string }[] = [];
 export const about = {
   title: "Bridging ideas, business operations and technology.",
   paragraphs: [
-    "BnHive Technologies is a modern software and technology company focused on designing, developing and deploying practical digital solutions for businesses, organizations, institutions and emerging ventures.",
-    "We're not limited to a single industry or programming language — we build the technology each client or product actually needs. We develop both client-specific software and reusable products that can evolve into SaaS platforms.",
+    "A software and technology company building practical, secure and maintainable solutions for businesses, institutions and new ventures — client projects and our own SaaS products alike.",
   ],
   vision:
     "To build useful, scalable, and intelligent technology that helps people and organizations work better, serve customers better, and create new opportunities.",
   mission:
     "To transform ideas, business processes, and real-world problems into secure, modern, and maintainable software solutions using the right technology for each project.",
   why: [
-    "Technology choices based on the actual problem rather than trends",
-    "Strong focus on practical and maintainable software",
-    "Web, mobile, backend, systems and AI capabilities under one technology direction",
-    "Ability to build both custom solutions and scalable SaaS products",
-    "Focus on security, reliability and long-term maintainability",
-    "Flexible solutions for startups, SMEs, institutions and larger organizations",
+    "The right technology for the problem, not the trend",
+    "Practical, maintainable software",
+    "Web, mobile, backend, systems and AI in one team",
+    "Custom builds and scalable SaaS products",
+    "Security and reliability built in",
+    "For startups, SMEs, institutions and enterprises",
   ],
   productsTitle: "What we're building",
   products: [

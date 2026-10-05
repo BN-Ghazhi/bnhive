@@ -77,40 +77,6 @@ export function Reveal({
   );
 }
 
-/** Counts the numeric part of a value like "8+" or "11" up from zero when visible.
- *  Renders the real number until then, so it's correct even without JavaScript. */
-export function CountUp({ value, className = "" }: { value: string; className?: string }) {
-  const match = value.match(/^(\D*)(\d+)(.*)$/);
-  const hasNumber = match !== null;
-  const target = match ? parseInt(match[2], 10) : 0;
-  const { ref, visible } = useInView<HTMLSpanElement>(0.5);
-  const [n, setN] = useState(target);
-
-  useEffect(() => {
-    if (!visible || !hasNumber) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let raf = 0;
-    const start = performance.now();
-    const duration = reduce ? 0 : 1400;
-    const tick = (t: number) => {
-      const p = duration === 0 ? 1 : Math.min((t - start) / duration, 1);
-      setN(Math.round(target * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [visible, target, hasNumber]);
-
-  if (!match) return <span className={className}>{value}</span>;
-  return (
-    <span ref={ref} className={className}>
-      {match[1]}
-      {n}
-      {match[3]}
-    </span>
-  );
-}
-
 /** Cycles through words with a flip-in animation. */
 export function RotatingWords({ words, interval = 2400 }: { words: string[]; interval?: number }) {
   const [i, setI] = useState(0);

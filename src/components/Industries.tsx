@@ -8,9 +8,9 @@ export default function Industries() {
     <section id="industries" className="bg-brand-50/60 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
-          eyebrow="Industries & solution areas"
+          eyebrow="Industries"
           title="Technology for every sector."
-          subtitle="We're not limited to a single industry — we build the technology required to solve each problem."
+          subtitle="We build for the sectors that move Africa forward."
         />
         <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {industries.map((ind, i) => (
@@ -19,9 +19,9 @@ export default function Industries() {
                 <span className="bg-brand-gradient flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white shadow-md shadow-brand-500/25 transition duration-300 group-hover:scale-110 group-hover:rotate-6">
                   <Glyph name={ind.icon} className="h-5.5 w-5.5" />
                 </span>
-                <div>
+                <div className="min-w-0">
                   <p className="font-display text-lg font-semibold text-navy-950">{ind.name}</p>
-                  <p className="mt-0.5 text-sm text-navy-600">{ind.text}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-navy-600">{ind.text}</p>
                 </div>
               </Spotlight>
             </Reveal>

@@ -58,14 +58,12 @@ export default function Process() {
               From problem to production <span className="text-brand-gradient-animated">— and beyond.</span>
             </h2>
             <p className="mt-4 text-lg text-navy-600">
-              A clear, collaborative process that takes your idea from first conversation to a live, supported
-              product — with no surprises along the way.
+              Seven clear steps from first chat to a live, supported product.
             </p>
 
             <div className="mt-8 hidden gap-3 sm:flex">
               {[
                 { k: "7", v: "Clear steps" },
-                { k: "1", v: "Team, end to end" },
                 { k: "∞", v: "Support after launch" },
               ].map((s) => (
                 <div
